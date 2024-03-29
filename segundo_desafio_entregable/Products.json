@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Camisola",
+    "description": "Re linda",
+    "price": 3000,
+    "thumbnail": "/img.jpg",
+    "code": "CAMI200",
+    "stock": 20
+  },
+  {
+    "id": 2,
+    "title": "Remera",
+    "description": "Re linda",
+    "price": 2500,
+    "thumbnail": "./img.jpg",
+    "code": "REM200",
+    "stock": 20
+  }
+]
