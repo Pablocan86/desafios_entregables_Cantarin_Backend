@@ -145,20 +145,20 @@ const manager = new ProductManager();
 
 manager.getProducts();
 
-manager.addProduct("Camiseta", "Re linda", 2500, "./img.jpg", "CAM200", 20);
-manager.addProduct("Remera", "Re linda", 2500, "./img.jpg", "REM200", 20);
+// manager.addProduct("Camiseta", "Re linda", 2500, "./img.jpg", "CAM200", 20);
+// manager.addProduct("Remera", "Re linda", 2500, "./img.jpg", "REM200", 20);
 // manager.addProduct("Pantalon", "Re linda", 2500, "./img.jpg", "PAN200", 20);
 
 // manager.deleteProduct(1);
 
-manager.getProducts();
+// manager.getProducts();
 
-manager.updateProduct(
-  1,
-  "Camisola",
-  "Re linda",
-  3000,
-  "/img.jpg",
-  "CAMI200",
-  20
-);
+// manager.updateProduct(
+//   1,
+//   "Camisola",
+//   "Re linda",
+//   3000,
+//   "/img.jpg",
+//   "CAMI200",
+//   20
+// );
