@@ -143,16 +143,21 @@ class ProductManager {
 
 const manager = new ProductManager();
 
+//Empieza con JSON (Base de datos) vacío
 manager.getProducts();
 
+//Se agregan productos
 // manager.addProduct("Camiseta", "Re linda", 2500, "./img.jpg", "CAM200", 20);
 // manager.addProduct("Remera", "Re linda", 2500, "./img.jpg", "REM200", 20);
 // manager.addProduct("Pantalon", "Re linda", 2500, "./img.jpg", "PAN200", 20);
 
+//Se prueba eliminar un producto indicando el ID
 // manager.deleteProduct(1);
 
+//Se viusalizan los productos actualizados luego de la eliminación
 // manager.getProducts();
 
+//Se modifican datos del producto (id,title,description,price,thumbnail,code,stock)
 // manager.updateProduct(
 //   1,
 //   "Camisola",
