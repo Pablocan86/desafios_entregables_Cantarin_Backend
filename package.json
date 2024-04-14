@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node --watch tercer_desafio_entregable/app.js"
+    "start": "node --watch express_avanzado/app.js"
   },
   "keywords": [],
   "author": "",
