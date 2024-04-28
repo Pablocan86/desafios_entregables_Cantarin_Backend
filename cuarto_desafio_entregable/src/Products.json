@@ -1,0 +1,79 @@
+[
+  {
+    "id": 3,
+    "title": "Remera rayada",
+    "description": "Remara distinta",
+    "price": 5000,
+    "status": true,
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQX1Nnrf9uwRXCbYJdf95vNJU_i62ecr6Ug&s",
+    "code": "REM201",
+    "stock": 20,
+    "category": "Primavera"
+  },
+  {
+    "id": 4,
+    "title": "Pantalon Oxford",
+    "description": "Un pase por la moda de antes",
+    "price": 5000,
+    "status": true,
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQX1Nnrf9uwRXCbYJdf95vNJU_i62ecr6Ug&s",
+    "code": "PAN200",
+    "stock": 20,
+    "category": "Primavera"
+  },
+  {
+    "id": 6,
+    "title": "Joguing escolar",
+    "description": "Para el colegio entre otros",
+    "price": "10000",
+    "status": true,
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQX1Nnrf9uwRXCbYJdf95vNJU_i62ecr6Ug&s",
+    "code": "PAN302",
+    "stock": "20",
+    "category": "ESCOLAR"
+  },
+  {
+    "id": 8,
+    "title": "Buzo con capucha",
+    "description": "Lindo, abrigado y fachero",
+    "price": "10000",
+    "status": true,
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQX1Nnrf9uwRXCbYJdf95vNJU_i62ecr6Ug&s",
+    "code": "BUZ201",
+    "stock": "20",
+    "category": "Invierno"
+  },
+  {
+    "id": 9,
+    "title": "Remere colorinche",
+    "description": "Ideal para salir a la playa",
+    "price": "2000",
+    "status": true,
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQX1Nnrf9uwRXCbYJdf95vNJU_i62ecr6Ug&s",
+    "code": "rem401",
+    "stock": "20",
+    "category": "PRIMAVERA"
+  },
+  {
+    "id": 10,
+    "title": "Ropa de invierno",
+    "description": "NO frio",
+    "price": "2000",
+    "status": true,
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQX1Nnrf9uwRXCbYJdf95vNJU_i62ecr6Ug&s",
+    "code": "RPA123",
+    "stock": "20",
+    "category": "Invierno"
+  },
+  {
+    "id": 11,
+    "title": "Falda",
+    "description": "Sencilla para salir a pasear",
+    "price": "3000",
+    "status": true,
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQX1Nnrf9uwRXCbYJdf95vNJU_i62ecr6Ug&s",
+    "code": "FAL201",
+    "stock": "20",
+    "category": "Verano"
+  }
+]

@@ -16,14 +16,5 @@
     "thumbnail": "./img.jpg",
     "code": "REM200",
     "stock": 20
-  },
-  {
-    "id": 3,
-    "title": "Pantalon",
-    "description": "Re linda",
-    "price": 2500,
-    "thumbnail": "./img.jpg",
-    "code": "PAN200",
-    "stock": 20
   }
 ]

@@ -147,8 +147,8 @@ const manager = new ProductManager();
 manager.getProducts();
 
 //Se agregan productos
-// manager.addProduct("Camiseta", "Re linda", 2500, "./img.jpg", "CAM200", 20);
-// manager.addProduct("Remera", "Re linda", 2500, "./img.jpg", "REM200", 20);
+manager.addProduct("Camiseta", "Re linda", 2500, "./img.jpg", "CAM200", 20);
+manager.addProduct("Remera", "Re linda", 2500, "./img.jpg", "REM200", 20);
 // manager.addProduct("Pantalon", "Re linda", 2500, "./img.jpg", "PAN200", 20);
 
 //Se prueba eliminar un producto indicando el ID

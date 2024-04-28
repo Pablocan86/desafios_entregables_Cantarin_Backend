@@ -37,8 +37,8 @@ class ProductManager {
     if (product) {
       return product;
     } else {
+      console.error("No found");
     }
-    console.error("No found");
   }
 }
 

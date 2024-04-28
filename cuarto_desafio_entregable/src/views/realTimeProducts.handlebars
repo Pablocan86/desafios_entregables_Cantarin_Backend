@@ -1,0 +1,72 @@
+<h1>LISTA DE PRODUCTOS</h1>
+<div class="productsContainer">
+
+  {{#each products}}
+    <div class="product">
+      <h4>{{this.title}}</h4>
+      <p>$ {{this.price}}.-</p>
+      <p>ID: {{this.id}}</p>
+      <img
+        src={{this.thumbnail}}
+        alt="imagen producto"
+        width="120px"
+        height="120px"
+      />
+    </div>
+  {{/each}}
+
+</div>
+<form id="formulario" class="form" action="/realtimeproducts" method="GET">
+  <h2>ADMINISTRACION DE PRODUCTOS</h2>
+  <section class="agregarProductos">
+    <h3>AGREGA PRODUCTO A BASE DE DATOS</h3>
+    <label for="title">Título: </label>
+    <input type="text" name="title" id="title" />
+    <label for="description">Descripción: </label>
+    <textarea
+      name="description"
+      id="description"
+      cols="30"
+      rows="10"
+    ></textarea>
+    <div class="grupo">
+      <div>
+        <label for="price">Precio: </label>
+        <input type="number" name="price" id="price" />
+      </div>
+      <div>
+        <label for="code">Código de producto: </label>
+        <input type="text" name="code" id="code" />
+      </div>
+    </div>
+    <div class="grupo">
+      <div>
+        <label for="stock">Stock: </label>
+        <input type="number" id="stock" name="stock" />
+      </div>
+      <div>
+        <label for="category">Categoría: </label>
+        <input type="text" id="category" name="category" />
+      </div>
+    </div>
+    <label for="linkImage">Link imagen: </label>
+    <input type="text" id="linkImage" name="linkImage" />
+    <button id="addButton">Agregar</button>
+  </section>
+  <div class="botones">
+
+    <div class="eliminar">
+      <h3>ELIMINA PRODUCTO</h3>
+      <div>
+        <label for="deleteId">Elimina por ID de producto</label>
+        <input type="text" id="deleteId" name="deleteId" />
+
+      </div>
+      <button id="deleteButton">Eliminar</button>
+    </div>
+
+  </div>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realTimeProducts.js"></script>
