@@ -1,10 +1,5 @@
 const socket = io();
 
-// const formulario = document.querySelector("#formulario");
-
-// formulario.addEventListener("submit", function (e) {
-//   e.preventDefault();
-// });
 const addButton = document.querySelector("#addButton");
 const deleteButton = document.querySelector("#deleteButton");
 

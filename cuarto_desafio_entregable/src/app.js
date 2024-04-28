@@ -49,7 +49,3 @@ socketServer.on("connection", (socket) => {
 
 app.use("/", productsRouter);
 app.use("/", cartRouter);
-
-// const server = app.listen(PORT, () =>
-//   console.log(`Servidor corriendo en puerto ${PORT}`)
-// );
