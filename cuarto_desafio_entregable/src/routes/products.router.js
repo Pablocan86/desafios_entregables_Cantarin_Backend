@@ -102,7 +102,7 @@ router.put("/api/product/:id", async (req, res) => {
     let idProduct = parseInt(req.params.id);
     const { id, title, description, price, thumbnail, code, stock, category } =
       req.body;
-    const existente = products.filter((prod) => prod.id === idProduct);
+    const existente = products.find((prod) => prod.id === idProduct);
     if (!existente) {
       res.send(`No existe producto en la base de datos`);
     }
