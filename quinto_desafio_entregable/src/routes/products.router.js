@@ -3,7 +3,10 @@ const router = express.Router();
 const productModel = require("../dao/models/product.model.js");
 const ProductManager = require("../dao/productManager.js");
 const productManager = new ProductManager();
-
+const {
+  isAuthenticated,
+  isNotAuthenticated,
+} = require("../middleware/auth.js");
 //Ruta raíz que devuelve el objeto de la primer consigna
 router.get("/", async (req, res) => {
   let { limit = 3, page = 1, sort, category } = req.query;
@@ -76,7 +79,7 @@ router.get("/", async (req, res) => {
 });
 
 //Ruta que renderiza en el handlebar products
-router.get("/products", async (req, res) => {
+router.get("/products", isAuthenticated, async (req, res) => {
   let { limit = 3, page = 1, sort, category } = req.query;
   limit = parseInt(limit);
   page = parseInt(page);
@@ -164,7 +167,7 @@ router.get("/productDetails/:pid", async (req, res) => {
   });
 });
 
-router.get("/productsManager", async (req, res) => {
+router.get("/productsManager", isAuthenticated, async (req, res) => {
   try {
     let page = parseInt(req.query.page);
     if (!page) page = 1;

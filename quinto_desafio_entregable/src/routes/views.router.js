@@ -7,11 +7,11 @@ const {
 const router = express.Router();
 
 router.get("/login", isNotAuthenticated, (req, res) => {
-  res.render("login", { style: "login.css" });
+  res.render("login", { style: "login.css", title: "Bienvenido" });
 });
 
 router.get("/register", isNotAuthenticated, (req, res) => {
-  res.render("register", { style: "register.css" });
+  res.render("register", { style: "register.css", title: "Registro" });
 });
 
 router.get("/profile", isAuthenticated, (req, res) => {

@@ -26,7 +26,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await userModel.findOne({ email });
     console.log(user);
-    if (!user) return res.status(404).send("Usuario no encontrado");
+    if (!user) return res.redirect("/register");
     req.session.user = {
       id: user._id,
       first_name: user.first_name,
