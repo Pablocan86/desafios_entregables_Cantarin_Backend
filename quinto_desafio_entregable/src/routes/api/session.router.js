@@ -1,5 +1,7 @@
 const express = require("express");
 const userModel = require("../../dao/models/users.model.js");
+const {createHash, isValidPassword} = require("../../utils.js")
+
 
 const router = express.Router();
 
@@ -11,7 +13,7 @@ router.post("/register", async (req, res) => {
       last_name,
       email,
       age,
-      password,
+      password:createHash(password),
     });
     await newUser.save();
     res.redirect("/login");
@@ -22,11 +24,14 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
-  try {
-    const user = await userModel.findOne({ email });
-    console.log(user);
-    if (!user) return res.redirect("/register");
+  if(!email||!password) return res.status(400).send({status:"error",error:"Incomplete values"})
+   try {
+    const user = await userModel.findOne({ email },{email:1,first_name:1,last_name:1,password:1,age:1,rol:1});
+    if(!user) return res.status(400).send({status:"error",error:"User not found"})
+    if(!isValidPassword(user,password)) return res.status(403).send({status:"error",error:"Incorrect password"})
+    delete user.password;
+  req.session.user=user
+      if (!user) return res.redirect("/register");
     req.session.user = {
       id: user._id,
       first_name: user.first_name,
