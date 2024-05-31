@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const productModel = require("../dao/models/product.model.js");
+const cartModel = require("../dao/models/cart.model.js");
 const ProductManager = require("../dao/productManager.js");
 const productManager = new ProductManager();
 const {
@@ -158,9 +159,11 @@ router.get("/products", isAuthenticated, async (req, res) => {
 
 router.get("/productDetails/:pid", async (req, res) => {
   let { pid } = req.params;
+  const cart = await cartModel.findById("664fa5d4d2c40fa1c15d6a58");
   const product = await productModel.findById(pid).lean();
   // res.send(product)
   res.render("productDetail", {
+    cart: cart.products,
     product,
     style: "productDetails.css",
     title: "Detalles producto",

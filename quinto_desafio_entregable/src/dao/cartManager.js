@@ -17,16 +17,26 @@ class CartManager {
       //Variable que toma el producto utilizando el método addProduct()
       const cart = await cartModel.findOne({ _id: idC });
       const product = await productModel.findOne({ _id: idP });
+      if (!cart) {
+        return res.status(404).send({ Respusta: "Carrito no encontrado" });
+      }
 
-      if (cart) {
-        if (product) {
+      if (product) {
+        let existProduct = cart.products.find(
+          (p) => p.product.toString() === idP
+        );
+        if (existProduct) {
+          existProduct.quantity++;
+          let result = await cartModel.updateOne(
+            { _id: idC },
+            { products: cart.products }
+          );
+        } else {
           cart.products.push({ product: product, quantity: 1 });
           let result = await cartModel.updateOne({ _id: idC }, cart);
-        } else {
-          console.log("No existe producto");
         }
       } else {
-        console.log("Carrito no existe");
+        console.log("No existe producto");
       }
 
       console.log(product, cart);

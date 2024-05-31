@@ -15,11 +15,11 @@
             <img class="productImage" src="{{this.thumbnail}}" alt="" />
             <p>$ {{this.price}}</p>
             <div class="detailsProduct">
-              <form action="/carts/664fa5d4d2c40fa1c15d6a58/products/{{this._id}}" method="POST"><button
-                class="addButton"
-                data-id="{{this._id}}"
-              >Agregar
-              </button></form>
+              <form
+                action="/carts/664fa5d4d2c40fa1c15d6a58/products/{{this._id}}"
+                method="POST"
+              ><button class="addButton" data-id="{{this._id}}">Agregar
+                </button></form>
               <a class="viewDetails" href="/productDetails/{{this._id}}">Ver
                 más...</a></div>
           </div>
@@ -39,7 +39,7 @@
     {{else}}
       <p>No products found.</p>
     {{/if}}
-
+    <a href="/carts/664fa5d4d2c40fa1c15d6a58">Carrito</a>
   </section>
 
 </div>
