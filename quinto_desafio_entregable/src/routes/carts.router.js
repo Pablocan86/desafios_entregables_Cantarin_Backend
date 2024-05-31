@@ -56,11 +56,13 @@ router.get("/carts/:cid", async (req, res) => {
 //No se pide en las cosignas, de todos modos tratar de adaptar
 
 router.post("/carts/:cid/products/:pid", async (req, res) => {
+
+
   try {
     let { cid, pid } = req.params;
     await cartManager.addToCart(pid, cid);
     const carts = await cartModel.find();
-    res.send({ carts });
+    res.redirect("/products")
   } catch (error) {
     console.error("No se puede agregar el producto", error);
     res.status(500).send("Error de conexión");
