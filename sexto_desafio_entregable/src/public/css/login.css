@@ -5,6 +5,7 @@
 }
 
 body {
+  background-image: url("https://img.freepik.com/vector-gratis/fondo-tecnologia-digital-alambre-malla-red_1017-27428.jpg");
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,8 +15,17 @@ body {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
 .loginForm {
+  width: 50%;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   border-radius: 5px;
@@ -79,9 +89,12 @@ input {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  gap: 10px;
 }
 
 .gitHub {
+  padding-left: 5px;
+  padding-right: 5px;
   text-decoration: none;
   display: flex;
   justify-content: center;
@@ -109,4 +122,11 @@ input {
   width: 30px;
   height: 30px;
   margin: 5px;
+}
+
+.imgEcommerce {
+  object-fit: fill;
+  width: 50%;
+
+  border-radius: 10px;
 }

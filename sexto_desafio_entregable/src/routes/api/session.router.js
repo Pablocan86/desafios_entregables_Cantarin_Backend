@@ -21,34 +21,19 @@ router.post(
   "/login",
   passport.authenticate("login", { failureRedirect: "faillogin" }),
   async (req, res) => {
-    const { email, password } = req.body;
-    if (!email || !password)
+    if (!req.user)
       return res
         .status(400)
-        .send({ status: "error", error: "Incomplete values" });
+        .send({ status: "error", error: "Credenciales invalidas" });
     try {
-      const user = await userModel.findOne(
-        { email },
-        { email: 1, first_name: 1, last_name: 1, password: 1, age: 1, rol: 1 }
-      );
-      if (!user)
-        return res
-          .status(400)
-          .send({ status: "error", error: "User not found" });
-      if (!isValidPassword(user, password))
-        return res
-          .status(403)
-          .send({ status: "error", error: "Incorrect password" });
-      delete user.password;
-      req.session.user = user;
-      if (!user) return res.redirect("/register");
+      if (!req.user) return res.redirect("/register");
       req.session.user = {
-        id: user._id,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
-        age: user.age,
-        rol: user.rol,
+        id: req.user._id,
+        first_name: req.user.first_name,
+        last_name: req.user.last_name,
+        email: req.user.email,
+        age: req.user.age,
+        rol: req.user.rol,
       };
 
       if (req.session.user.rol === "admin") {
@@ -62,7 +47,7 @@ router.post(
   }
 );
 
-router.get("faillogin", (req, res) => {
+router.get("/faillogin", (req, res) => {
   res.send({ error: "Login fallido" });
 });
 router.post("/logout", (req, res) => {
@@ -71,6 +56,21 @@ router.post("/logout", (req, res) => {
     res.redirect("/login");
   });
 });
+
+router.get("/auth/google", passport.authenticate("google", { scope: "email" }));
+
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "login" }),
+  async (req, res) => {
+    req.session.user = req.user;
+    if (req.session.user.rol === "admin") {
+      res.redirect("/productsManager");
+    } else {
+      res.redirect("/products");
+    }
+  }
+);
 
 router.get(
   "/github",

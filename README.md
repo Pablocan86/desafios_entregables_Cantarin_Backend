@@ -10,7 +10,9 @@
 
 ### [Desafío entregable 5](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend/tree/main/quinto_desafio_entregable/src)
 
-> ***Librerias a instalar***: npm i bcryptjs body-parser connect-mongo cookie-parser dotenv express express-handlebars express-session handlebars mongoose mongoose-paginate-v2 session-file-store socket.io
+### [Desafío entregable 6](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend/tree/main/quinto_desafio_entregable/src)
+
+> **_Librerias a instalar_**: npm i bcryptjs body-parser connect-mongo cookie-parser dotenv express express-handlebars express-session handlebars mongoose mongoose-paginate-v2 session-file-store socket.io
 
 Para correr el servidor "npm start"
 
@@ -30,20 +32,20 @@ http://localhost:8080/realtimeproducts
 
 ![alt text](image-1.png)
 
-
 ## DESAFIO ENTREGABLE 5
 
 ### Login
 
-````
+```
 GET: http://localhost:8080/login
-````
+```
 
 > Si esta registrado y tiene rol de usuario lleva a /products, si es admin lleva a /productsManager
 
 ![alt text](image-2.png)
 
 Usuario:
+
 - Email: pablo.cantarin86@gmail.com
 - Contraseña: pablito
 
@@ -58,8 +60,8 @@ Administrador:
 
 ### Registro
 
-````
+```
 GET: http://localhost:8080/register
-````
+```
 
 ![alt text](image-3.png)
