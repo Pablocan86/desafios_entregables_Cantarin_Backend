@@ -6,6 +6,7 @@ const { createHash, isValidPassword } = require("../utils.js");
 const dotenv = require("dotenv");
 
 dotenv.config();
+
 const LocalStrategy = local.Strategy;
 const GoogleStrategy = require("passport-google-oauth20");
 
@@ -20,7 +21,6 @@ const initializePassport = () => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
-          console.log(profile);
           let user = await userService.findOne({ email: profile._json.email });
           if (!user) {
             let newUser = {
@@ -53,12 +53,14 @@ const initializePassport = () => {
       async (accessToken, refreshToken, profile, done) => {
         try {
           console.log(profile);
-          let user = await userService.findOne({ email: profile._json.email });
+          let user = await userService.findOne({
+            email: profile._json.email,
+          });
           if (!user) {
             let newUser = {
               first_name: profile._json.name,
               last_name: "",
-              age: 20,
+              age: "",
               email: profile._json.email,
               password: "",
             };
