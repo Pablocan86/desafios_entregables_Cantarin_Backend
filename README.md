@@ -8,11 +8,11 @@
 
 ### [Desafío entregable 4](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend/tree/main/cuarto_desafio_entregable/src)
 
-### [Desafío entregable 5](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend/tree/main/quinto_desafio_entregable/src)
+### [Desafío entregable 5](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend/tree/main/sexto_desafio_entregable/src)
 
 ### [Desafío entregable 6](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend/tree/main/quinto_desafio_entregable/src)
 
-> **_Librerias a instalar_**: npm i bcryptjs body-parser connect-mongo cookie-parser dotenv express express-handlebars express-session handlebars mongoose mongoose-paginate-v2 session-file-store socket.io
+> **_Librerias a instalar_**: npm i bcryptjs body-parser connect-mongo cookie-parser dotenv express express-handlebars express-session handlebars mongoose passport mongoose-paginate-v2 passport-github2 passport-google-oauth20 passport-local session-file-store socket.io
 
 Para correr el servidor "npm start"
 
@@ -65,3 +65,15 @@ GET: http://localhost:8080/register
 ```
 
 ![alt text](image-3.png)
+
+## DESAFIO ENTREGABLE 6
+
+> Al no poder subir las claves de la autenticación de GitHub y Google, se utilizó dotenv para ocultar la información
+
+### Login
+
+```
+GET: http://localhost:8080/login
+```
+
+![alt text](image-6.png)
