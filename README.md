@@ -77,3 +77,7 @@ GET: http://localhost:8080/login
 ```
 
 ![alt text](image-6.png)
+
+### Video funcionamiento
+
+![alt text](Multimedia1.gif)
