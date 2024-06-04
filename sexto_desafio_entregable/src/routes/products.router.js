@@ -142,10 +142,11 @@ router.get("/products", isAuthenticated, async (req, res) => {
             }&category=${category || ""}`
           : null,
     };
-
+    const cart = await cartModel.findById("664fa5d4d2c40fa1c15d6a58");
     //Renderizamos la vista
     res.render("products", {
       user: req.session.user,
+      cart: cart.products,
       response,
       style: "products.css",
       title: "Productos",
@@ -157,7 +158,7 @@ router.get("/products", isAuthenticated, async (req, res) => {
   }
 });
 
-router.get("/productDetails/:pid", async (req, res) => {
+router.get("/productDetails/:pid", isAuthenticated, async (req, res) => {
   let { pid } = req.params;
   const cart = await cartModel.findById("664fa5d4d2c40fa1c15d6a58");
   const product = await productModel.findById(pid).lean();
