@@ -8,9 +8,9 @@
 
 ### [Desafío entregable 4](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend/tree/main/cuarto_desafio_entregable/src)
 
-### [Desafío entregable 5](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend/tree/main/sexto_desafio_entregable/src)
+### [Desafío entregable 5](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend?tab=readme-ov-file#desafio-entregable-5)
 
-### [Desafío entregable 6](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend/tree/main/quinto_desafio_entregable/src)
+### [Desafío entregable 6](https://github.com/Pablocan86/desafios_entregables_Cantarin_Backend?tab=readme-ov-file#desafio-entregable-6)
 
 > **_Librerias a instalar_**: npm i bcryptjs body-parser connect-mongo cookie-parser dotenv express express-handlebars express-session handlebars mongoose passport mongoose-paginate-v2 passport-github2 passport-google-oauth20 passport-local session-file-store socket.io
 
