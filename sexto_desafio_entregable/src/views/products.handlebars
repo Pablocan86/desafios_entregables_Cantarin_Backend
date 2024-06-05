@@ -11,7 +11,7 @@
     {{else}}
     <p>Inicia sesión para inicar la compra</p>
     {{/if}} 
-       
+    {{#if user}}
       <a
         href="/carts/664fa5d4d2c40fa1c15d6a58"
         class="material-symbols-outlined"
@@ -24,6 +24,11 @@
         {{/if}}
         shopping_cart
       </a>
+      {{else}}
+      <a href="/carts/664fa5d4d2c40fa1c15d6a58"
+        class="material-symbols-outlined"
+        id="imgCart">shopping_cart</a>
+        {{/if}}
     </div>
     {{#if response.payload.length}}
       <div class="productsContainer">

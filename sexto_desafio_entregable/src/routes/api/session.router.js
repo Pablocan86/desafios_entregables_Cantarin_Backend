@@ -48,8 +48,9 @@ router.post(
 );
 
 router.get("/faillogin", (req, res) => {
-  res.send({ error: "Login fallido" });
+  res.render("login",{style: "login.css", title: "Bienvenido",Error:"Usuario y/o contraseña incorrectos"});
 });
+
 router.post("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) return res.status(500).send("Error al cerrar sesión");

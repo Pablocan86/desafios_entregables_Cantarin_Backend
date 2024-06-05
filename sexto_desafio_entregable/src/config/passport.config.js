@@ -124,7 +124,6 @@ const initializePassport = () => {
         try {
           const user = await userService.findOne({ email: username });
           if (!user) {
-            console.log("El usuario no existe");
             return done(null, user);
           }
           if (!isValidPassword(user, password)) return done(null, false);
