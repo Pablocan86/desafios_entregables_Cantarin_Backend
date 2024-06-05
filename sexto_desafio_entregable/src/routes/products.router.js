@@ -80,7 +80,7 @@ router.get("/", async (req, res) => {
 });
 
 //Ruta que renderiza en el handlebar products
-router.get("/products", isAuthenticated, async (req, res) => {
+router.get("/products", async (req, res) => {
   let { limit = 3, page = 1, sort, category } = req.query;
   limit = parseInt(limit);
   page = parseInt(page);
