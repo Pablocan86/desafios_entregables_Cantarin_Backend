@@ -1,5 +1,5 @@
 const cartManager = require("../dao/cartManager.js");
-
+const cartModel = require("../dao/models/cart.model.js");
 const cartService = new cartManager();
 
 exports.getcarts = async (req, res) => {
@@ -22,7 +22,7 @@ exports.getCartById = async (req, res) => {
   let { cid } = req.params;
 
   try {
-    let cart = await cartService.getCartById(cid);
+    let cart = await cartService.getCartByIdPopulate(cid);
     res.render("cart", { cart, style: "cart.css", title: "Carrito" });
   } catch (error) {
     res.status(500).send("Error al obtener el carrito");
@@ -38,5 +38,33 @@ exports.addToCart = async (req, res) => {
   } catch (error) {
     console.error("No se puede agregar el producto", error);
     res.status(500).send("Error de conexión");
+  }
+};
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    let { cid, pid } = req.params;
+    const cart = await cartModel.findById(cid);
+    if (!cart) {
+      return res.status(404).send({ Respusta: "Carrito no encontrado" });
+    }
+
+    let existProduct = cart.products.find((p) => p.product.toString() === pid);
+
+    if (!existProduct) {
+      return res
+        .status(404)
+        .send({ Respuesta: "Producto no encontrado en el carrito" });
+    } else {
+      existProduct.quantity--;
+      let result = await cartModel.updateOne(
+        { _id: cid },
+        { products: cart.products }
+      );
+
+      res.redirect(`/carts/${cid}`);
+    }
+  } catch (error) {
+    res.status(504).send(error);
   }
 };

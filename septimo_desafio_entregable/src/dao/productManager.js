@@ -3,8 +3,22 @@ const productModel = require("../dao/models/product.model.js");
 class ProductManager {
   constructor() {}
 
+  async getProductById(pid) {
+    const product = await productModel.findById(pid).lean();
+    return product;
+  }
+  async totalProducts(filter) {
+    const total = await productModel.countDocuments(filter);
+    return total;
+  }
+
   async getProducts() {
     const products = await productModel.find().lean();
+    return products;
+  }
+
+  async onlyGetProducts() {
+    const products = await productModel.find();
     return products;
   }
 

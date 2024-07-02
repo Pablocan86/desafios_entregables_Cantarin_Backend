@@ -10,6 +10,11 @@ class CartManager {
   }
 
   async getCartById(cid) {
+    let cart = await cartModel.findById(cid);
+    return cart;
+  }
+
+  async getCartByIdPopulate(cid) {
     let cart = await cartModel
       .findById(cid)
       .populate("products.product")
@@ -68,6 +73,7 @@ class CartManager {
       console.error("No existe producto en la base de datos", error);
     }
   }
+
   async deleteCart(id) {
     let cart = await cartModel.findById(id);
 
