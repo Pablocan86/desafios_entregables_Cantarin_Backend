@@ -21,64 +21,6 @@ router.post(
   }
 );
 
-// JWT
-// router.post("/registerJWT", (req, res) => {
-//   const { name, email, password } = req.body;
-//   const exists = users.find((user) => user.email === email);
-//   if (exists)
-//     return res
-//       .status(400)
-//       .send({ status: "error", error: "User already exists" });
-//   const user = {
-//     name,
-//     email,
-//     password,
-//   };
-//   users.push(user);
-//   const access_token = generateToken(user);
-//   res.send({ status: "success", access_token });
-// });
-
-// router.post("/loginJWT", (req, res) => {
-//   const { email, password } = req.body;
-//   const user = users.find(
-//     (user) => user.email === email && user.password === password
-//   );
-//   if (!user)
-//     return res
-//       .status(400)
-//       .send({ status: "error", error: "Invalid credentials" });
-//   const access_token = generateToken(user);
-//   res.send({ status: "success", access_token });
-// });
-
-// router.get("/current", authToken, (req, res) => {
-//   res.send({ status: "success", payload: req.user });
-// });
-
-// router.post("/loginJWT", (req, res) => {
-//   const { email, password } = req.body;
-//   console.log(req.body);
-//   if (email == "admin@coder.com" && password == "CODER1234") {
-//     let token = jwt.sign({ email, password /*role*/ }, "secretCode", {
-//       expiresIn: "24h",
-//     });
-
-//     res.send({ message: "Inicio de sesión exitoso", token });
-//   }
-// });
-
-// router.get(
-//   "/current",
-//   passportCall("jwt"),
-//   authorization("user"),
-//   (req, res) => {
-//     res.send(req.user);
-//   }
-// );
-
-// FIN DE JWT
-
 router.get("/failregister", async (req, res) => {
   console.log("Estrategia fallida");
   res.send({ error: "Falló" });

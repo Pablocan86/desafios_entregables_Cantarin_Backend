@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const cartModel = require("../dao/models/cart.model.js");
 const productModel = require("../dao/models/product.model.js");
-const CartManager = require("../dao/cartManager.js");
+const CartManager = require("../dao/classes/cart.dao.js");
 const cartController = require("../controllers/cartController.js");
 
 const cartManager = new CartManager();

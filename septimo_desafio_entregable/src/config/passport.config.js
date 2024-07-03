@@ -39,7 +39,7 @@ const initializePassport = () => {
             const newCart = new cartService();
             let createCart = await cartService.create(newCart);
             let newUser = {
-              first_name: profile._json.name,
+              first_name: profile._json.email,
               last_name: "",
               age: "",
               email: profile._json.email,
@@ -130,22 +130,22 @@ const initializePassport = () => {
   );
 
   //Estrategia JWT
-  passport.use(
-    "jwt",
-    new JWTStrategy(
-      {
-        jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
-        secretOrKey: "secretCode",
-      },
-      async (jwt_payload, done) => {
-        try {
-          return done(null, jwt_payload);
-        } catch (error) {
-          return done(error);
-        }
-      }
-    )
-  );
+  // passport.use(
+  //   "jwt",
+  //   new JWTStrategy(
+  //     {
+  //       jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
+  //       secretOrKey: "secretCode",
+  //     },
+  //     async (jwt_payload, done) => {
+  //       try {
+  //         return done(null, jwt_payload);
+  //       } catch (error) {
+  //         return done(error);
+  //       }
+  //     }
+  //   )
+  // );
 
   passport.serializeUser((user, done) => {
     done(null, user._id);

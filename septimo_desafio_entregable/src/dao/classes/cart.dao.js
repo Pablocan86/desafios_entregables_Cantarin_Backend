@@ -1,5 +1,5 @@
-const cartModel = require("../dao/models/cart.model.js");
-const productModel = require("../dao/models/product.model.js");
+const cartModel = require("../models/cart.model.js");
+const productModel = require("../models/product.model.js");
 
 class CartManager {
   constructor() {}

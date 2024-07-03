@@ -1,5 +1,5 @@
-const productManager = require("../dao/productManager.js");
-const cartManager = require("../dao/cartManager.js");
+const productManager = require("../dao/classes/product.dao.js");
+const cartManager = require("../dao/classes/cart.dao.js");
 const productModel = require("../dao/models/product.model.js");
 const cartModel = require("../dao/models/cart.model.js");
 const productService = new productManager();

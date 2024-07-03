@@ -3,7 +3,7 @@ const router = express.Router();
 const productsController = require("../controllers/productsCotroller.js");
 const productModel = require("../dao/models/product.model.js");
 const cartModel = require("../dao/models/cart.model.js");
-const ProductManager = require("../dao/productManager.js");
+const ProductManager = require("../dao/classes/product.dao.js");
 const productManager = new ProductManager();
 const {
   isAuthenticated,

@@ -1,4 +1,4 @@
-const cartManager = require("../dao/cartManager.js");
+const cartManager = require("../dao/classes/cart.dao.js");
 const cartModel = require("../dao/models/cart.model.js");
 const cartService = new cartManager();
 

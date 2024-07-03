@@ -1,4 +1,4 @@
-const messageModel = require("../dao/models/message.model");
+const messageModel = require("../models/message.model");
 
 class MessageManager {
   constructor() {}
