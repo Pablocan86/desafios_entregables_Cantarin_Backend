@@ -2,6 +2,7 @@ const express = require("express");
 const userModel = require("../../dao/models/users.model.js");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
+const sessionConstroller = require("../../controllers/sessionController.js");
 const {
   generateToken,
   authToken,
@@ -15,10 +16,10 @@ const users = [];
 
 router.post(
   "/register",
-  passport.authenticate("register", { failureRedirect: "failregister" }),
-  async (req, res) => {
-    res.redirect("/userregistrade");
-  }
+  passport.authenticate("register", {
+    failureRedirect: "failregister",
+  }),
+  sessionConstroller.register
 );
 
 router.get("/failregister", async (req, res) => {
@@ -29,32 +30,7 @@ router.get("/failregister", async (req, res) => {
 router.post(
   "/login",
   passport.authenticate("login", { failureRedirect: "faillogin" }),
-  async (req, res) => {
-    if (!req.user)
-      return res
-        .status(400)
-        .send({ status: "error", error: "Credenciales invalidas" });
-    try {
-      if (!req.user) return res.redirect("/register");
-      req.session.user = {
-        id: req.user._id,
-        first_name: req.user.first_name,
-        last_name: req.user.last_name,
-        email: req.user.email,
-        age: req.user.age,
-        cart: req.user.cart,
-        rol: req.user.rol,
-      };
-
-      if (req.session.user.rol === "admin") {
-        res.redirect("/productsManager");
-      } else {
-        res.redirect("/products");
-      }
-    } catch (err) {
-      res.status(500).send("Error al iniciar sesión");
-    }
-  }
+  sessionConstroller.login
 );
 
 router.get("/current", async (req, res) => {
@@ -69,15 +45,6 @@ router.get("/current", async (req, res) => {
   }
 });
 
-// router.get(
-//   "/current",
-//   passportCall("jwt"),
-//   authorization("user"),
-//   (req, res) => {
-//     res.send(req.user);
-//   }
-// );
-
 router.get("/faillogin", (req, res) => {
   res.render("login", {
     style: "login.css",
@@ -86,26 +53,14 @@ router.get("/faillogin", (req, res) => {
   });
 });
 
-router.post("/logout", (req, res) => {
-  req.session.destroy((err) => {
-    if (err) return res.status(500).send("Error al cerrar sesión");
-    res.redirect("/login");
-  });
-});
+router.post("/logout", sessionConstroller.logout);
 
 router.get("/auth/google", passport.authenticate("google", { scope: "email" }));
 
 router.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "login" }),
-  async (req, res) => {
-    req.session.user = req.user;
-    if (req.session.user.rol === "admin") {
-      res.redirect("/productsManager");
-    } else {
-      res.redirect("/products");
-    }
-  }
+  sessionConstroller.googleCallback
 );
 
 router.get(
@@ -117,13 +72,6 @@ router.get(
 router.get(
   "/githubcallback",
   passport.authenticate("github", { failureRedirect: "login" }),
-  async (req, res) => {
-    req.session.user = req.user;
-    if (req.session.user.rol === "admin") {
-      res.redirect("/productsManager");
-    } else {
-      res.redirect("/products");
-    }
-  }
+  sessionConstroller.githubCallback
 );
 module.exports = router;
