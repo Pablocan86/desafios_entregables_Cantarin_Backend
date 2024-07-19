@@ -62,36 +62,21 @@ class ProductManager {
     return console.log("Producto Agregado correctamente");
   }
 
-  async updateProduct(
-    id,
-    title,
-    description,
-    price,
-    thumbnail,
-    code,
-    status,
-    category,
-    stock
-  ) {
-    const products = await productModel.find();
-    const productoEncontrado = products.find((prod) => (prod.id = id));
-    if (!productoEncontrado) {
+  async updateProduct(productoActualizado) {
+    const product = await productModel.findOne({
+      code: productoActualizado.code,
+    });
+
+    if (product) {
+      await productModel.updateOne(
+        { code: productoActualizado.code },
+        productoActualizado
+      );
+    } else {
       throw Error("Producto no existe en la base de datos");
     }
-    //Creo el objeto nuevo para agregar con las opciones para que no se borre ninguna propiedad de no pasarla como parámetro
-    const productoActualizado = {
-      title: title || productoEncontrado.title,
-      description: description || productoEncontrado.description,
-      price: price || productoEncontrado.price,
-      thumbnail: thumbnail || productoEncontrado.thumbnail,
-      code: code || productoEncontrado.code,
-      status: productoEncontrado.status,
-      category: category || productoEncontrado.category,
-      stock: stock || productoEncontrado.stock,
-    };
-
-    await productModel.updateOne({ _id: id }, productoActualizado);
   }
+
   async updateQuantity(id, stock) {
     const actualizaciones = {
       stock: stock,

@@ -206,20 +206,24 @@ exports.updateProductToDB = async (req, res) => {
     req.body;
 
   try {
-    await productService.updateProduct(
-      uid,
-      title,
-      description,
-      price,
-      thumbnail,
-      code,
-      status,
-      category,
-      stock
-    );
-    let products = await productService.onlyGetProducts();
-    const exist = products.find((prod) => prod.id === uid);
-    res.status(201).json({ message: `Producto ${exist.title} actualizado` });
+    const products = await productService.onlyGetProducts();
+    const productoEncontrado = products.find((prod) => prod.id === uid);
+
+    //Creo el objeto nuevo para agregar con las opciones para que no se borre ninguna propiedad de no pasarla como parámetro
+    const productoActualizado = {
+      _id: productoEncontrado._id,
+      title: title || productoEncontrado.title,
+      description: description || productoEncontrado.description,
+      price: price || productoEncontrado.price,
+      thumbnail: thumbnail || productoEncontrado.thumbnail,
+      code: code || productoEncontrado.code,
+      status: productoEncontrado.status,
+      category: category || productoEncontrado.category,
+      stock: stock || productoEncontrado.stock,
+    };
+    const result = await productService.updateProduct(productoActualizado);
+    const actualizate = await productService.getCartById(uid);
+    res.render("updateProduct", { result: actualizate });
   } catch (error) {
     if (error.message === "Producto no existe en la base de datos") {
       res.status(400).json({ error: "Producto no existe en la base de datos" });

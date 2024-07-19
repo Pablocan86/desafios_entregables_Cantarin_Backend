@@ -12,6 +12,7 @@ const viewsRouter = require("./routes/views.router.js");
 const dotenv = require("dotenv");
 const passport = require("passport");
 const nodemailer = require("nodemailer");
+const { errorHandler } = require("./middleware/index.js");
 
 const { passportCall, authorization, generateToken } = require("./utils.js");
 const initializePassport = require("./config/passport.config.js");
@@ -63,5 +64,6 @@ app.use("/", viewsRouter);
 app.use("/", productsRouter);
 app.use("/carts", cartsRouter);
 app.use("/", messageRouter);
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

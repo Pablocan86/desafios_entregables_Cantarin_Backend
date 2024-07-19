@@ -6,6 +6,9 @@ const userService = require("../dao/models/users.model.js");
 const cartService = require("../dao/models/cart.model.js");
 const { createHash, isValidPassword } = require("../utils.js");
 const dotenv = require("dotenv");
+const CustomError = require("../services/errors/CustomErrors.js");
+const EErrors = require("../services/errors/enum.js");
+const { generateUserErrorInfo } = require("../services/errors/info.js");
 
 dotenv.config();
 
@@ -103,6 +106,14 @@ const initializePassport = () => {
       { passReqToCallback: true, usernameField: "email" },
       async (req, username, password, done) => {
         const { first_name, last_name, email, age } = req.body;
+        if (!first_name || !last_name || !email) {
+          CustomError.createError({
+            name: "User creation error",
+            cause: generateUserErrorInfo({ first_name, last_name, email, age }),
+            message: "Error Trying to create user",
+            code: EErrors.INVALID_TYPES_ERROR,
+          });
+        }
         try {
           let user = await userService.findOne({ email: username });
           if (user) {
