@@ -197,9 +197,15 @@ exports.getUpdateProduct = async (req, res) => {
   try {
     const { pid } = req.params;
     let result = await productService.getProductById(pid);
-    res.render("updateProduct", { result: result, style: "products.css" });
+
+    res.render("updateProduct", {
+      result: result,
+      title: "Actualización de productos",
+      style: "products.css",
+    });
   } catch (error) {}
 };
+
 exports.updateProductToDB = async (req, res) => {
   let { uid } = req.params;
   let { title, description, price, thumbnail, code, status, category, stock } =
@@ -223,15 +229,12 @@ exports.updateProductToDB = async (req, res) => {
     };
     const result = await productService.updateProduct(productoActualizado);
     const actualizate = await productService.getCartById(uid);
-    res.render("updateProduct", { result: actualizate });
+    result.agregado = "Producto actualizado";
+    res.render("updateProduct", result);
   } catch (error) {
-    if (error.message === "Producto no existe en la base de datos") {
-      res.status(400).json({ error: "Producto no existe en la base de datos" });
-    } else {
-      res
-        .status(500)
-        .json({ error: "Ocurrió un error al procesar la solicitud" });
-    }
+    res
+      .status(401)
+      .json({ error: "Ocurrió un error al procesar la solicitud" });
   }
 };
 

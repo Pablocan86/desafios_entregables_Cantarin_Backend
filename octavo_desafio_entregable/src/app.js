@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -23,7 +24,7 @@ const app = express();
 const PORT = 8080;
 
 app.use(cookieParser());
-
+app.use(cors());
 app.use(
   session({
     // store: new FileStoreInstance({ path: "./session", ttl: 100, retries: 0 }),
@@ -66,4 +67,6 @@ app.use("/carts", cartsRouter);
 app.use("/", messageRouter);
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+app.listen(PORT, `0.0.0.0`, () =>
+  console.log(`Server listening on port ${PORT}`)
+);

@@ -73,7 +73,7 @@ class ProductManager {
         productoActualizado
       );
     } else {
-      throw Error("Producto no existe en la base de datos");
+      throw Error("No se puede actualizar el producto");
     }
   }
 
