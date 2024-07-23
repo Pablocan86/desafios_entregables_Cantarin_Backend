@@ -5,6 +5,9 @@ const cartModel = require("../dao/models/cart.model.js");
 const { generateProducts } = require("../utils.js");
 const productService = new productManager();
 const cartService = new cartManager();
+const CustomError = require("../services/errors/CustomErrors.js");
+const EErrors = require("../services/errors/enum.js");
+const { iqualCode } = require("../services/errors/info.js");
 
 exports.mockingProducts = async (req, res) => {
   let products = [];
@@ -181,8 +184,18 @@ exports.addProductToBD = async (req, res) => {
     if (error.message === "No se han completado todos los campos") {
       result.error = "No se han completado todos los campos";
       res.render("productsManager", result);
-    } else if (error.message === "Número de código existente") {
-      result.error = "Número de código existente";
+    } else if (
+      error.message ===
+      `Código de producto ${code} existente en la base de datos`
+    ) {
+      const error = CustomError.createError({
+        name: "Código ya existente en base de datos",
+        cause: iqualCode(code),
+        message: `Código de producto ${code} existente en la base de datos`,
+        code: EErrors.DATABASE_ERROR,
+      });
+      result.error = error.message;
+
       res.render("productsManager", result);
       // res.status(400).json({ error: "Número de código existente" });
     } else {

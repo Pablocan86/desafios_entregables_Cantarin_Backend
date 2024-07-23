@@ -1,9 +1,13 @@
 const generateUserErrorInfo = (user) => {
-  return `One or more properties were incomplete or not valid.
-    List of required properties:
-    * first_name : needs to be a String, received ${user.first_name};
-    * last_name  : needs to be a String, received ${user.last_name};
-    * email      : needs to be a String, received ${user.emails}`;
+  return `Uno o más de los siguientes campos fueron completados erróneamente.
+   Lista de requerimientos:
+    * first_name : Necesita cadena de texto, se recibió ${user.first_name};
+    * last_name  : Necesita cadena de texto, se recibió ${user.last_name};
+    * email      : Necesita cadena de texto, se recibió ${user.emails}`;
 };
 
-module.exports = { generateUserErrorInfo };
+const iqualCode = (code) => {
+  return `Código de producto ${code} existente en la base de datos`;
+};
+
+module.exports = { generateUserErrorInfo, iqualCode };

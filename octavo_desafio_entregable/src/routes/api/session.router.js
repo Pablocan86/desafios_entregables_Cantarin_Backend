@@ -1,6 +1,4 @@
 const express = require("express");
-const userModel = require("../../dao/models/users.model.js");
-const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const sessionController = require("../../controllers/sessionController.js");
 const {

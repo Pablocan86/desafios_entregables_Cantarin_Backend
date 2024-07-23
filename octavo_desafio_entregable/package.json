@@ -1,8 +1,8 @@
 {
-  "name": "practica_integradora_2_cantarin_pablo",
-  "version": "1.0.0",
+  "name": "octavo_desafio_entregable",
+  "version": "8.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node --watch ./src/app.js"
   },

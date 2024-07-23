@@ -47,7 +47,9 @@ class ProductManager {
       throw new Error("No se han completado todos los campos");
     }
     if (products.some((p) => p.code === code)) {
-      throw new Error("Número de código existente");
+      throw new Error(
+        `Código de producto ${code} existente en la base de datos`
+      );
     }
     const newProduct = await productModel.create({
       title,

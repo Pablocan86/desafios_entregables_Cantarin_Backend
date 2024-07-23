@@ -7,8 +7,8 @@
 <div class="productsContainer">
 
     {{#each docs}}
-        <div class="cardProduct">
-          <h3>{{this.title}}</h3>
+        <div class="cardProduct" data-id="{{this._id}}">
+          <h3 class="titleProduct">{{this.title}}</h3>
           <img class="productImage" src="{{this.thumbnail}}" alt="" />
           <p>$ {{this.price}}</p>
           <div><a href="/updateproducts/{{this.id}}"><button class="addButton">Actualizar</button></a>
