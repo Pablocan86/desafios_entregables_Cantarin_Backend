@@ -1,9 +1,14 @@
 const passport = require("passport");
 const userDTO = require("../dao/DTOs/user.dto");
 
-exports.register = async (req, res) => {
+exports.register = 
+async (req, res) => {
   res.redirect("/userregistrade");
 };
+
+exports.failregister = async (req, res) => {
+  res.send({ error: "Estrategia fallida" });
+}
 
 exports.login = async (req, res) => {
   if (!req.user)

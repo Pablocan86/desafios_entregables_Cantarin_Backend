@@ -1,6 +1,5 @@
 const passport = require("passport");
 const GitHubStrategy = require("passport-github2");
-const jwt = require("passport-jwt");
 const local = require("passport-local");
 const userService = require("../dao/models/users.model.js");
 const cartService = require("../dao/models/cart.model.js");
@@ -12,8 +11,7 @@ const { generateUserErrorInfo } = require("../services/errors/info.js");
 
 dotenv.config();
 
-const JWTStrategy = jwt.Strategy;
-const ExtractJWT = jwt.ExtractJwt;
+
 const LocalStrategy = local.Strategy;
 const GoogleStrategy = require("passport-google-oauth20");
 
@@ -106,15 +104,20 @@ const initializePassport = () => {
       { passReqToCallback: true, usernameField: "email" },
       async (req, username, password, done) => {
         const { first_name, last_name, email, age } = req.body;
-        if (!first_name || !last_name || !email) {
-          CustomError.createError({
-            name: "User creation error",
-            cause: generateUserErrorInfo({ first_name, last_name, email, age }),
-            message: "Error Trying to create user",
-            code: EErrors.INVALID_TYPES_ERROR,
-          });
-        }
+       
         try {
+         
+          if (!first_name || first_name.trim() === "" ) {
+            console.log("Campos incompletos detectados"); // Agregado para depuración
+            throw CustomError.createError({
+              name: "Debe completar más de un campo",
+              cause: generateUserErrorInfo(),
+              message:"Error al crear el usuario",
+              code: EErrors.INVALID_TYPES_ERROR,
+              shouldThrow:true,
+            });
+           
+          }
           let user = await userService.findOne({ email: username });
           if (user) {
             console.log("El usuario ya existe");
@@ -134,7 +137,12 @@ const initializePassport = () => {
           let result = await userService.create(newUser);
           return done(null, result);
         } catch (error) {
-          return done("Error al obtener el usuario" + error);
+          console.log("Error detectado:", error); // Agregado para depuración
+          if (error.shouldThrow) {
+            return done(null, false, { message: error.message });
+          } else {
+            return done(null, false, { message: "Error al obtener el usuario: " + error.message });
+          }
         }
       }
     )

@@ -34,4 +34,4 @@ Si no se completan alguno campos devuelve error por terminal
 POST: localhost:8080/productsManager
 ```
 
-En la parte del fomulario si el código ya existe en base de datos, devuelve error
+En la parte inferior del fomulario si el código ya existe en base de datos, devuelve error

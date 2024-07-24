@@ -1,9 +1,9 @@
-const generateUserErrorInfo = (user) => {
+const generateUserErrorInfo = () => {
   return `Uno o más de los siguientes campos fueron completados erróneamente.
    Lista de requerimientos:
-    * first_name : Necesita cadena de texto, se recibió ${user.first_name};
-    * last_name  : Necesita cadena de texto, se recibió ${user.last_name};
-    * email      : Necesita cadena de texto, se recibió ${user.emails}`;
+    * first_name : Necesita cadena de texto, se recibió ;
+    * last_name  : Necesita cadena de texto, se recibió ;
+    * email      : Necesita cadena de texto, se recibió `;
 };
 
 const iqualCode = (code) => {
