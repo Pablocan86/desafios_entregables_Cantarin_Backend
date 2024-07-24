@@ -108,7 +108,7 @@ const initializePassport = () => {
         try {
          
           if (!first_name || first_name.trim() === "" ) {
-            console.log("Campos incompletos detectados"); // Agregado para depuración
+            
             throw CustomError.createError({
               name: "Debe completar más de un campo",
               cause: generateUserErrorInfo(),
@@ -137,7 +137,7 @@ const initializePassport = () => {
           let result = await userService.create(newUser);
           return done(null, result);
         } catch (error) {
-          console.log("Error detectado:", error); // Agregado para depuración
+          
           if (error.shouldThrow) {
             return done(null, false, { message: error.message });
           } else {
