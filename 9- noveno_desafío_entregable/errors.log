@@ -1,7 +1,4 @@
-
-fatal: Alerta
-info: Debe iniciar sesión
-fatal: Alerta
-info: Debe iniciar sesión
-fatal: Alerta
-info: Debe iniciar sesión
+2024-08-02T22:24:16.641Z - warning: Cuidado
+2024-08-02T22:24:16.643Z - info: Esto es una información
+2024-08-02T22:24:59.586Z - warning: Cuidado
+2024-08-02T22:24:59.588Z - info: Esto es una información
