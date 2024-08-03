@@ -62,9 +62,44 @@ const connectMongoDB = async () => {
 
 connectMongoDB();
 
-app.get("/info", (req, res) => {
-  prodLogger.debug("Probando");
-  res.send({ message: "Prueba de logger" });
+app.get("/loggerTest", (req, res) => {
+  res.render("logger", { style: "logger.css" });
+});
+app.get("/loggerTest/:logger", (req, res) => {
+  const { logger } = req.params;
+  switch (logger) {
+    case "debug":
+      devLogger.debug("Esto es un logger Debug");
+      res.render("logger", { style: "logger.css", text: "Esto es un debug" });
+      break;
+    case "info":
+      devLogger.info("Esto es un logger info de desarrollo");
+      prodLogger.info("Esto es un looger info de producción");
+      res.render("logger", { style: "logger.css", text: "Esto es una info" });
+      break;
+    case "http":
+      devLogger.http("Esto es un logger http de desarrollo");
+      prodLogger.http("Esto es un looger http de producción");
+      res.render("logger", { style: "logger.css", text: "Esto es un http" });
+      break;
+    case "warning":
+      devLogger.warning("Esto es un logger warning de desarrollo");
+      prodLogger.warning("Esto es un looger warning de producción");
+      res.render("logger", { style: "logger.css", text: "Esto es un warning" });
+      break;
+    case "error":
+      devLogger.error("Esto es un logger error de desarrollo");
+      prodLogger.error("Esto es un looger error de producción");
+      res.render("logger", { style: "logger.css", text: "Esto es un error" });
+      break;
+    case "fatal":
+      devLogger.fatal("Esto es un logger fatal de desarrollo");
+      prodLogger.fatal("Esto es un looger fatal de producción");
+      res.render("logger", { style: "logger.css", text: "Esto es un fatal" });
+      break;
+    default:
+      res.render("logger", { style: "logger.css" });
+  }
 });
 
 app.use("/api/sessions", sessionRouter);

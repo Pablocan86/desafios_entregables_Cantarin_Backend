@@ -10,12 +10,12 @@ const customLevelOptions = {
     debug: 5,
   },
   colors: {
-    fatal: "red",
-    error: "orange",
+    fatal: "bold red",
+    error: "red",
     warning: "yellow",
-    info: "blue",
-    http: "violet",
-    debug: "green",
+    info: "green",
+    http: "magenta",
+    debug: "blue",
   },
 };
 

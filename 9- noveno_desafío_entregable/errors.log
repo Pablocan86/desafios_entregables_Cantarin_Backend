@@ -1,4 +1,21 @@
-2024-08-02T22:24:16.641Z - warning: Cuidado
-2024-08-02T22:24:16.643Z - info: Esto es una información
-2024-08-02T22:24:59.586Z - warning: Cuidado
-2024-08-02T22:24:59.588Z - info: Esto es una información
+
+2024-08-03T19:39:45.599Z - info: Esto es un looger info de producción
+2024-08-03T19:39:57.353Z - warning: Esto es un looger warning de producción
+2024-08-03T19:40:00.769Z - error: Esto es un looger error de producción
+2024-08-03T19:40:04.623Z - fatal: Esto es un looger fatal de producción
+2024-08-03T19:41:44.102Z - fatal: Esto es un looger fatal de producción
+2024-08-03T20:11:46.810Z - info: Esto es un looger info de producción
+2024-08-03T20:11:48.251Z - warning: Esto es un looger warning de producción
+2024-08-03T20:11:49.530Z - error: Esto es un looger error de producción
+2024-08-03T20:11:50.662Z - fatal: Esto es un looger fatal de producción
+2024-08-03T20:14:43.664Z - fatal: Esto es un looger fatal de producción
+2024-08-03T20:14:59.925Z - fatal: Esto es un looger fatal de producción
+2024-08-03T20:15:13.712Z - fatal: Esto es un looger fatal de producción
+2024-08-03T20:15:22.695Z - fatal: Esto es un looger fatal de producción
+2024-08-03T20:15:36.958Z - fatal: Esto es un looger fatal de producción
+2024-08-03T20:15:52.845Z - fatal: Esto es un looger fatal de producción
+2024-08-03T20:18:26.616Z - fatal: Esto es un looger fatal de producción
+2024-08-03T20:18:37.738Z - info: Esto es un looger info de producción
+2024-08-03T20:18:38.615Z - warning: Esto es un looger warning de producción
+2024-08-03T20:18:39.509Z - error: Esto es un looger error de producción
+2024-08-03T20:18:40.380Z - fatal: Esto es un looger fatal de producción
