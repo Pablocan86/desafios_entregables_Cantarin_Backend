@@ -5,11 +5,14 @@
   <label for="last_name">Apellido:</label>
   <input type="text" name="last_name" />
   <label for="email">Email:</label>
-  <input type="email" name="email"  />
+  <input type="email" name="email" />
   <label for="age">Edad:</label>
   <input type="number" name="age" required />
   <label for="password">Contraseña:</label>
   <input type="password" name="password" required />
+  {{#if error}}
+    <p class="error">{{error}}</p>
+  {{/if}}
   <button class="submitButton" type="submit">Registrarse</button>
   <a href="/login">Volver</a>
 </form>

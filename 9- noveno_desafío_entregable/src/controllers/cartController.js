@@ -6,6 +6,7 @@ const crypto = require("crypto");
 const ticketManager = require("../dao/classes/ticket.dao.js");
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
+const { devLogger, prodLogger } = require("../middleware/logger.js");
 
 dotenv.config();
 
@@ -27,15 +28,20 @@ exports.getcarts = async (req, res) => {
     let carts = await cartService.getCarts();
     res.send({ result: "success", payload: carts });
   } catch (error) {
-    console.error("No se encuentas carritos en la Base de datos", error);
+    devLogger.info("No se encuentran carritos en la base de datos");
+    prodLogger.info("No se encuentran carritos en la base de datos" + error);
   }
 };
 
 exports.addCart = async (req, res) => {
-  await cartService.addCart();
-  let carts = await cartService.getCarts();
-  console.log("Carrito creado correctamente");
-  res.send({ result: "success", payload: carts });
+  try {
+    await cartService.addCart();
+    let carts = await cartService.getCarts();
+    console.log("Carrito creado correctamente");
+    res.send({ result: "success", payload: carts });
+  } catch (error) {
+    prodLogger.error("Eror al crear carrito: " + error);
+  }
 };
 
 exports.getCartById = async (req, res) => {
@@ -51,6 +57,7 @@ exports.getCartById = async (req, res) => {
       title: "Carrito",
     });
   } catch (error) {
+    devLogger.info("Carrito inexistente: " + error);
     res.status(500).send("Error al obtener el carrito");
   }
 };
@@ -60,17 +67,17 @@ exports.addToCart = async (req, res) => {
   let user = req.session.user;
   try {
     if (user.rol === "admin") {
-      res.send({
-        message:
-          "Usted es administrador, no puede agregar productos al carrito",
-      });
+      devLogger.info(
+        "Rol de administador, no puede agregar productos al carrito"
+      );
+      res.redirect("/products");
     }
     if (user.rol === "user") {
       await cartService.addToCart(pid, cid);
       res.redirect("/products");
     }
   } catch (error) {
-    console.error("No se puede agregar el producto", error);
+    prodLogger.error("Imposibilidad de agregar productos al cerrito: " + error);
     res.status(500).send("Error de conexión");
   }
 };

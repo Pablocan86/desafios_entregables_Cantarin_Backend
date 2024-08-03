@@ -1,14 +1,18 @@
 const passport = require("passport");
 const userDTO = require("../dao/DTOs/user.dto");
+const { devLogger, prodLogger } = require("../middleware/logger.js");
 
-exports.register = 
-async (req, res) => {
+exports.register = async (req, res) => {
   res.redirect("/userregistrade");
 };
 
 exports.failregister = async (req, res) => {
-  res.send({ error: "Estrategia fallida" });
-}
+  res.render("register", {
+    style: "register.css",
+    title: "Registro",
+    error: "No se puede registar al usuario",
+  });
+};
 
 exports.login = async (req, res) => {
   if (!req.user)
@@ -43,16 +47,22 @@ exports.current = async (req, res) => {
       let user = new userDTO(req.session.user);
       res.render("profile", { user: user, style: "profile.css" });
     } else {
-      res.send({ message: "No hay usuario inciado" });
+      res.render("profile", {
+        style: "profile.css",
+        error: "No ha iniciado sesión",
+      });
     }
   } catch (error) {
-    console.error("No se ha iniciado sesión", error);
+    prodLogger.warning("No ha iniciado sesión");
   }
 };
 
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
-    if (err) return res.status(500).send("Error al cerrar sesión");
+    if (err) {
+      prodLogger.error("Error al cerrar cesión");
+      return res.status(500).send("Error al cerrar sesión");
+    }
     res.redirect("/login");
   });
 };

@@ -8,9 +8,8 @@ const dotenv = require("dotenv");
 const CustomError = require("../services/errors/CustomErrors.js");
 const EErrors = require("../services/errors/enum.js");
 const { generateUserErrorInfo } = require("../services/errors/info.js");
-
+const { devLogger, prodLogger } = require("../middleware/logger.js");
 dotenv.config();
-
 
 const LocalStrategy = local.Strategy;
 const GoogleStrategy = require("passport-google-oauth20");
@@ -104,23 +103,21 @@ const initializePassport = () => {
       { passReqToCallback: true, usernameField: "email" },
       async (req, username, password, done) => {
         const { first_name, last_name, email, age } = req.body;
-       
+
         try {
-         
-          if (!first_name || first_name.trim() === "" ) {
-            
+          if (!first_name || first_name.trim() === "") {
+            prodLogger.info("Debe completar los campos");
             throw CustomError.createError({
               name: "Debe completar más de un campo",
               cause: generateUserErrorInfo(),
-              message:"Error al crear el usuario",
+              message: "Error al crear el usuario",
               code: EErrors.INVALID_TYPES_ERROR,
-              shouldThrow:true,
+              shouldThrow: true,
             });
-           
           }
           let user = await userService.findOne({ email: username });
           if (user) {
-            console.log("El usuario ya existe");
+            devLogger.info("Usuario existente");
             return done(null, false);
           }
           const newCart = new cartService();
@@ -137,11 +134,12 @@ const initializePassport = () => {
           let result = await userService.create(newUser);
           return done(null, result);
         } catch (error) {
-          
           if (error.shouldThrow) {
             return done(null, false, { message: error.message });
           } else {
-            return done(null, false, { message: "Error al obtener el usuario: " + error.message });
+            return done(null, false, {
+              message: "Error al obtener el usuario: " + error.message,
+            });
           }
         }
       }
