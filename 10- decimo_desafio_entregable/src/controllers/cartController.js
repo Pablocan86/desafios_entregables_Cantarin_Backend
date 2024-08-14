@@ -38,9 +38,9 @@ exports.addCart = async (req, res) => {
     await cartService.addCart();
     let carts = await cartService.getCarts();
     console.log("Carrito creado correctamente");
-    res.send({ result: "success", payload: carts });
+    res.status(200).json("Carrito creado");
   } catch (error) {
-    prodLogger.error("Eror al crear carrito: " + error);
+    res.status(505).json("Error al crear el carrito");
   }
 };
 

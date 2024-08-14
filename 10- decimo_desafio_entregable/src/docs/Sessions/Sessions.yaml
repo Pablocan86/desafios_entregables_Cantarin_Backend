@@ -4,15 +4,100 @@ paths:
       tags:
         - Sessions
       summary: Vista para registar usuario
-  /login/:
-    get:
-      summary: Ingreso a la plataforma de usuarios registrados
-      tags:
-        - Sessions
     post:
-      summary: Compara con usuarios de la base de datos
       tags:
         - Sessions
+      summary: Registra nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/registerUser"
+      responses:
+        "200":
+          description: Usuario registrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "500":
+          description: No se puede registar usuario
+  /api/sessions/failregister/:
+    get:
+      tags:
+        - Sessions
+      summary: Muestra error al intentar registrarse
+  /api/sessions/login/:
+    post:
+      tags:
+        - Sessions
+      summary: Compara con usuarios de la base de datos
+      responses:
+        "200":
+          description: Usuario correcto, ingreso
+        "400":
+          description: Credeciales inválidas
+        "500":
+          description: Error al iniciar sesión
+  /api/sessions/faillogin:
+    get:
+      tags:
+        - Sessions
+      summary: Muestra mensaje de que el usuario o contraseña son incorrectos
+  /api/sessions/change_password:
+    put:
+      tags:
+        - Sessions
+      summary: Actualiza contraseña
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/changePassword"
+      responses:
+        "200":
+          description: Contraseña actualizada correctamente
+        "400":
+          description: No se puede utilizar la misma contraseña
+        "500":
+          description: Error interno del servidor
+  api/sessions/current:
+    get:
+      tags:
+        - Sessions
+      summary: Muestra datos de la sesión iniciada
+  /api/sessions/logout:
+    post:
+      tags:
+        - Sessions
+      summary: Cierra sesión
+      responses:
+        "200":
+          description: Sesión cerrada correctamente
+        "500":
+          description: Error al cerrar sesión
+  /auth/google:
+    get:
+      tags:
+        - Sessions
+      summary: Autenticación usando Google
+  /api/sessions/auth/google/callback:
+    get:
+      tags:
+        - Sessions
+      summary: Callback de autenticación de Google
+  /api/sessions/github:
+    get:
+      tags:
+        - Sessions
+      summary: Autenticación usando GitHub
+  /api/sessions/githubcallback:
+    get:
+      tags:
+        - Sessions
+      summary: Callback de autenticación de GitHub
 components:
   schemas:
     User:
@@ -51,3 +136,40 @@ components:
         password: "$2a$10$erl3wheS0Efjq0UqLpVgx.EGGc/2KqxToyT2cSwZc8ImKcq2luZL6"
         cart: "668d5a5838afb182bb7ae891"
         rol: user
+  requestBodies:
+    registerUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: Nombre del nuevo usuario
+        last_name:
+          type: string
+          description: Apellido del nuevo usuario
+        email:
+          type: string
+          description: Email del nuevo usuario
+        age:
+          type: number
+          description: Edad del nuevo usuario
+        password:
+          type: string
+          description: contraseña hasheada
+      example:
+        first_name: Pablo
+        last_name: Cantarin
+        email: pablo.cantarin86@gmail.com
+        age: 37
+        password: rublemblemblem
+    changePassword:
+      type: object
+      properties:
+        correo:
+          type: string
+          description: Correo electrónico del usuario registrado
+        password:
+          type: string
+          description: Nueva contraseña que se hasheara
+      example:
+        correo: pablo.cantarin86@gmail.com
+        contraseña: CODER1234

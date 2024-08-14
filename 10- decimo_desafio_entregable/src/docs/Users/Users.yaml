@@ -14,6 +14,36 @@ paths:
                 $ref: "#/components/schemas/User"
         "500":
           description: No se puede ver usuarios
+  /api/users/premium/{uid}:
+    get:
+      tags:
+        - Users
+      summary: Muestra página para cambiar rol de usuario
+      description: Se debe ser admin para poder ver este endpoint
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: id del usuario
+          schema:
+            $type: string
+    put:
+      tags:
+        - Users
+      summary: Actualiza rol de user a preimum o viceversa
+      description: Se debe ser admin para poder ver este endpoint
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: id del usuario
+          schema:
+            $type: string
+      responses:
+        "202":
+          description: Se cambio rol de usuario
+        "505":
+          description: Ocurrio un error al procesar la solicitud
 components:
   schemas:
     User:
