@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node --watch ./src/app.js"
+    "start": "node --watch ./src/app.js",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
@@ -35,5 +36,8 @@
     "twilio": "^5.2.2",
     "uuid": "^10.0.0",
     "winston": "^3.13.1"
+  },
+  "devDependencies": {
+    "mocha": "^10.7.3"
   }
 }
